@@ -7,19 +7,31 @@ var letterUsed = [];
 
 var winText = document.getElementById("win-text");
 var lossText = document.getElementById("loss-text");
-var userChoiceText = document.getElementById("userChoice-text");
 var guessLeftText = document.getElementById("guessLeft-text");
+var userChoiceText = document.getElementById("userChoice-text");
+
 
 document.onkeyup = function(event) {
     var userGuess = event.key;
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
 
     if (userGuess === computerGuess) {
         wins++; 
     } else {
         guessesLeft--;
         letterUsed.push(userGuess);
+        if (guessesLeft = 0) {
+            losses++;
+        }
+
+    winText.textContent = wins;
+    lossText.textContent = losses;
+    guessLeftText = guessesLeft;
+    userChoiceText = letterUsed;
     }
+
+    
 
 
 
