@@ -10,11 +10,15 @@ var lossesText = document.getElementById("losses-text");
 var guessesText = document.getElementById("guesses-text");
 var lettersText = document.getElementById("letters-text")
 
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-console.log(computerGuess);
 
 
+function newLetter () {
+    var x = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    console.log(x);
+    return x;
+}
 
+var computerGuess = newLetter();
 
 document.onkeyup = function(event) {
     var userGuess = event.key;
@@ -24,6 +28,7 @@ document.onkeyup = function(event) {
         wins++;
         guesses = 9;
         letters = [];
+        computerGuess = newLetter();
 
     } else {
         guesses--;
@@ -33,12 +38,12 @@ document.onkeyup = function(event) {
             guesses = 9;
             letters = [];
         }
+        
     }
 
     winText.textContent = "Wins: " + wins;
     lossesText.textContent = "Losses: " + losses;
     guessesText.textContent = "Guesses left: " + guesses;
     lettersText.textContent = "Letters used: " + letters;
-    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    console.log(computerGuess);
+    
 }
