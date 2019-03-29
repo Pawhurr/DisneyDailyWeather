@@ -2,42 +2,43 @@ var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
 
 var wins = 0;
 var losses = 0;
-var guessesLeft = 9;
-var letterUsed = [];
+var guesses = 9;
+var letters = [];
 
-var winText = document.getElementById("win-text");
-var lossText = document.getElementById("loss-text");
-var guessLeftText = document.getElementById("guessLeft-text");
-var userChoiceText = document.getElementById("userChoice-text");
+var winText = document.getElementById("wins-text");
+var lossesText = document.getElementById("losses-text");
+var guessesText = document.getElementById("guesses-text");
+var lettersText = document.getElementById("letters-text")
+
+var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+console.log(computerGuess);
+
+
 
 
 document.onkeyup = function(event) {
     var userGuess = event.key;
-    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
 
     if (userGuess === computerGuess) {
-        wins++; 
-    } else {
-        guessesLeft--;
-        letterUsed.push(userGuess);
-        if (guessesLeft = 0) {
-            losses++;
-        }
+        wins++;
+        guesses = 9;
+        letters = [];
 
-    winText.textContent = wins;
-    lossText.textContent = losses;
-    guessLeftText = guessesLeft;
-    userChoiceText = letterUsed;
+    } else {
+        guesses--;
+        letters.push(userGuess);
+        if (guesses === 0) {
+            losses++;
+            guesses = 9;
+            letters = [];
+        }
     }
 
-    
-
-
-
-
-
-
-
+    winText.textContent = "Wins: " + wins;
+    lossesText.textContent = "Losses: " + losses;
+    guessesText.textContent = "Guesses left: " + guesses;
+    lettersText.textContent = "Letters used: " + letters;
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    console.log(computerGuess);
 }
-
