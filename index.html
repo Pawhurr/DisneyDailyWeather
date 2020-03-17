@@ -1,25 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-
-<title>The Psychic Game</title>
-<meta charset="UTF-8">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Disney World Daily Weather</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="./images/castle2.png"/>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
+    <div class="container">
+        <div class="row">
+            <div id="mainStage" class="col-9">
+                TEST
+            </div>
+            <div id="rightBar" class="col-3">
+                <div id="dateRow" class="row">
+                    <div id="dateText" class="col-12">
+                        TEST
+                    </div>
+                </div>
+                <div id="timeRow" class="row">
+                    <div id="timeText" class="col-12">
+                        TESET
+                    </div>
+                </div>
+                <div id="tempRow" class="row">
+                    <div id="tempText" class="col-12">
+                    </div>
+                </div>
+                <div id="weatherRow" class="row">
+                    <div id="weatherText" class="col-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h1>The Psychic Game</h1>
-    <p>Guess what letter I'm thinking of</p>
-    <p id="wins-text"></p>
-    <p id="losses-text"></p>
-    <p id="guesses-text"></p>
-    <p id="letters-text"></p>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
-
-<script src="assets/javascript/game.js"></script>
 
 </html>
