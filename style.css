@@ -1,13 +1,35 @@
-.container {
-    background-color: lightblue;
+.container-fluid {
+    background: rgb(0,43,111);
+    background: linear-gradient(180deg, rgba(0,43,111,1) 0%, rgba(1,151,255,1) 50%, rgba(197,231,242,1) 100%);
     width: 100vw;
     height: 100vh;
     color: #fff;
 }
 
 #rightBar {
-    background-color: darkblue;
+    background-color:#002366;
     color: #fff;
     height: 100vh;
-    opacity: .5;
+    opacity: .75;
+}
+
+body {
+    margin: 0 auto;
+}
+
+#dateText {
+    opacity: .75;
+    padding-top: 40px;
+}
+
+#dateText > h6 {
+    font-weight: 300;
+}
+
+#dateText > h4 {
+    font-weight: 300;
+}
+
+#timeText > h1{
+    font-weight: 200;
 }
