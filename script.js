@@ -1,15 +1,21 @@
 const DWDailyWeather = (function(){
-    const date = new Date();
+    const pics = ["cloud", "cloud-showers-heavy", "cloud-sun", "cloud-moon", "braille", "sun", "moon"];
+    let date;
     let day;
     let month;
-    let time;
+    let weatherBroad;
+    let weatherDescription;
+    let currentTemp;
+    let highTemp;
+    let lowTemp;
+    let timeFunc;
 
     function init(){
+        currentTime();
         getWeather("Charlotte,NorthCarolina");
         todaysDay();
         currentMonth();
-        currentTime();
-        setInterval(currentTime, 600);
+        timeFunc = setInterval(currentTime, 3000);
         $("#dateText").html("<h6>" + day + "</h6>\n<h4>" + month + " " + date.getDate() + "</h4>");
     }
 
@@ -21,13 +27,29 @@ const DWDailyWeather = (function(){
           url: queryURL,
           method: "GET"
         }).then(function(response) {
-    
+            currentTemp = Math.round(response.main.temp);
+            highTemp = response.main.temp_max;
+            lowTemp = response.main.temp_min;
+            weatherDescription = (response.weather[0].description).toUpperCase();
+            weatherBroad = response.weather[0].main;
+            weatherPic = weatherBroad === "Clouds" ? pics[0] : weatherBroad === "Rain" ? pics[1] : weatherBroad === "Mist" ? pics[4] : 
+                weatherBroad === "Clear" ? pics[5] : pics[2];
+
+            if (date.getHours() < 6 || date.getHours() > 19){
+                if (weatherPic === "cloud-sun"){
+                    weatherPic = "cloud-moon";
+                } else if (weatherPic === "sun"){
+                    weatherPic = "moon";
+                }
+            };
+            
+
+            $("#tempText").html("<span id='tempTextTop'>Current Temperature</span>\n<h1>" + currentTemp + "°F</h1>");
+            $("#weatherText").text(weatherDescription);
+            $("#weatherPic").html("<h1><span class='fas fa-" + weatherPic + "'></span></h1>");
+
             console.log(queryURL);
             console.log(response);
-            $("#tempText").text(Math.round(response.main.temp) + "°F");
-            $("#weatherText").text(response.weather[0].description);
-    
-
           });
     }
 
@@ -45,13 +67,14 @@ const DWDailyWeather = (function(){
     }
 
     function currentTime(){
+        date = new Date();
         let currentHours = date.getHours();
-        let currentMins = date.getMinutes();
+        let currentMins = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
         let nonMilitary = currentHours > 12 ? currentHours - 12 : currentHours;
         let ampm = currentHours >= 12 ? "pm" : "am";
-        time = nonMilitary + ":" + currentMins + " " + ampm;
+        let time = nonMilitary + ":" + currentMins + " " + ampm;
         $("#timeText").empty();
-        $("#timeText").html("<h1>" + time + "</h1>");
+        $("#timeText").append("<h1>" + time + "</h1>");
     }
 
     return {

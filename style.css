@@ -11,10 +11,12 @@
     color: #fff;
     height: 100vh;
     opacity: .75;
+    z-index: 2;
 }
 
 body {
     margin: 0 auto;
+    overflow: hidden;
 }
 
 #dateText {
@@ -32,4 +34,36 @@ body {
 
 #timeText > h1{
     font-weight: 200;
+}
+
+#tempText > h1{
+    font-weight: 200;
+}
+
+#tempTextTop {
+    opacity: .75;
+    font-weight: 300;
+}
+
+#tempText {
+    padding-top: 20px;
+}
+
+#weatherText {
+    opacity: .75;
+}
+
+#skyline > img {
+    width: 100%;
+}
+
+#skyline {
+    position: absolute;
+    z-index: 1;
+    top: 140px;
+    right: 0px;
+}
+
+#mainStage {
+    opacity: .75;
 }
