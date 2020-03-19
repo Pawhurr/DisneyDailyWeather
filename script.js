@@ -32,7 +32,7 @@ const DWDailyWeather = (function(){
             lowTemp = response.main.temp_min;
             weatherDescription = (response.weather[0].description).toUpperCase();
             weatherBroad = response.weather[0].main;
-            weatherPic = weatherBroad === "Clouds" ? pics[0] : weatherBroad === "Rain" ? pics[1] : weatherBroad === "Mist" ? pics[4] : 
+            weatherPic = weatherBroad === "Clouds" ? pics[0] : weatherBroad === "Rain" || weatherBroad === "Drizzle" ? pics[1] : weatherBroad === "Mist" ? pics[4] : 
                 weatherBroad === "Clear" ? pics[5] : pics[2];
 
             if (date.getHours() < 6 || date.getHours() > 19){
@@ -43,8 +43,9 @@ const DWDailyWeather = (function(){
                 }
             };
             
-
-            $("#tempText").html("<span id='tempTextTop'>Current Temperature</span>\n<h1>" + currentTemp + "°F</h1>");
+            $("#tempText").html("<span class='tempTextTop'>Current Temperature</span>\n<h1>" + currentTemp + "°F</h1>");
+            $("#highTemp").html("<span class='tempTextTop'>High</span><br><h3>" + highTemp  + "°F</h3>");
+            $("#lowTemp").html("<span class='tempTextTop'>Low</span><br><h3>" + lowTemp  + "°F</h3>");
             $("#weatherText").text(weatherDescription);
             $("#weatherPic").html("<h1><span class='fas fa-" + weatherPic + "'></span></h1>");
 
@@ -82,6 +83,8 @@ const DWDailyWeather = (function(){
     }
 })();
 
-$(function(){
-    DWDailyWeather.init();
+$(document).ready(function(){
+    $(function(){
+        DWDailyWeather.init();
+    });
 });
